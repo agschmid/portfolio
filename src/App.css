@@ -1,5 +1,8 @@
 .App {
+  display: flex;
   text-align: center;
+  flex-direction: column;
+  gap: 50px;
 }
 
 .App-logo {
@@ -14,7 +17,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +37,172 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+@font-face {
+  font-family: Seasons;
+  src: url("./fonts/seasons/regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Seasons;
+  font-weight: bold;
+  src: url("./fonts/seasons/bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Seasons;
+  font-weight: lighter;
+  src: url("./fonts/seasons/light.otf") format("opentype");
+}
+
+
+
+@font-face {
+  font-family: "Neue";
+  src: url("./fonts/neue/bold.ttf") format("truetype");
+}
+
+
+#name {
+  font-family: "Seasons";
+  font-size: 300%;
+  font-weight: bold;
+  text-align: left;
+}
+
+#title {
+  writing-mode: vertical-rl;
+  transform: scale(-1);
+  text-align: right;
+  margin: 10px;
+  font-size: 108%;
+  padding-right: 20px;
+}
+
+
+#home, .body-left{
+  display: flex;
+  width: 40%;
+}
+
+#home {
+  justify-content: flex-start;
+
+}
+
+nav, .body-right{
+  width: 60%;
+  flex-shrink: 1;
+}
+
+#navigation {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  font-size: 250%;
+  padding: 0px;
+  margin-top: 0px;
+}
+
+#navigation a {
+  text-decoration: none;
+  color: black;
+}
+
+
+html {
+  padding: 50px;
+}
+
+body, #root, .App, html {
+  height: 100%;
+}
+
+.body{
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+* {
+  font-family: "Neue";
+  box-sizing: border-box;
+  background-color: lavender;
+}
+
+header, .body{
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  gap: 50px;
+}
+
+.highlighted{
+  opacity: 1;
+}
+
+.nothighlighted{
+  opacity: 0.5;
+}
+
+
+.project-list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style-type: none;
+  align-items: left;
+  font-size: 250%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.project-list li{
+  font-family: "Seasons";
+  text-align: left;
+  padding-left: 0px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.project-list li:hover{
+  padding-left: 30px;
+}
+
+.portfolio-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lower-align{
+  align-items: flex-end;
+}
+
+
+
+.page-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
 }
