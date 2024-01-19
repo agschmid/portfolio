@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion"
 
-export default function Projects(){   
+
+export default function Sonic(){   
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
     const [transitionStage, setTransistionStage] = useState("fadeIn");
 
     useEffect(() => {
         if (location !== displayLocation) setTransistionStage("fadeOut");
-    }, [location, displayLocation]);
+      }, [location, displayLocation]);
 
     return (
         <div className={`${transitionStage} body`}
@@ -24,10 +26,18 @@ export default function Projects(){
 
             <div className='body-right'>
                 <ul className='project-list'>
-                    <Link to="/projects/sonic"><li>Sonic Mutations</li></Link>
-                    <li>System of a Sound</li>
-                    <li>PANIC</li>
-                    <li>Quantum Phonons</li>
+                <li>Test</li>
+
+                <motion.div
+                    animate={{ y: -250 }}
+                    transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: 1,
+                        repeatDelay: 1,
+                    }}>            
+                    <li>Sonic Mutations</li>
+                </motion.div>
                 </ul>
             </div>
         </div>

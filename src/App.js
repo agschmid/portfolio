@@ -1,11 +1,22 @@
 import './App.css';
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import About from './About';
 import Projects from './Projects';
+import Sonic from './Sonic';
+
 
 
 export default function App () {
+  const location = useLocation();
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [transitionStage, setTransistionStage] = useState("fadeIn");
+
+  useEffect(() => {
+    if (location !== displayLocation) setTransistionStage("fadeOut");
+  }, [location, displayLocation]);
+
+
       return (
         <div className="App">
           <header>
@@ -24,10 +35,23 @@ export default function App () {
               </ul>
             </nav>
           </header>
-            <Routes location={useLocation()}>
-              <Route exact path="/" element={<About />} />
-              <Route path="/projects/" element={<Projects />} />
-            </Routes>
+          <div
+            className={`${transitionStage} body`}
+            onAnimationEnd={() => {
+              if (transitionStage === "fadeOut") {
+                setTransistionStage("fadeIn");
+                setDisplayLocation(location);
+              }
+            }}
+          >
+          <Routes location={displayLocation}>
+            <Route exact path="/" element={<About />} />
+            <Route path="/projects/" element={<Projects />} />
+            <Route path="/projects/sonic" element={<Sonic />} />
+
+          </Routes> 
+          </div>
+
           </div>
             );
 }
