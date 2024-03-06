@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+}
+
 .App {
   display: flex;
   text-align: center;
@@ -26,24 +34,37 @@
 @font-face {
   font-family: "Neue";
   src: url("./fonts/neue/bold.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Neue";
+  font-weight: 200;
+  src: url("./fonts/neue/roman.ttf") format("truetype");
 }
 
 
+@font-face {
+  font-family: "Neue";
+  font-weight: 100;
+  src: url("./fonts/neue/thin.ttf") format("truetype");
+}
+
 #name {
   font-family: "Seasons";
-  font-size: 300%;
+  font-size: 200%;
   font-weight: bold;
   text-align: left;
 }
 
-#title {
+/* #title {
   writing-mode: vertical-rl;
   transform: scale(-1);
   text-align: right;
   margin: 10px;
   font-size: 108%;
   padding-right: 20px;
-}
+} */
 
 
 #home, .body-left{
@@ -57,23 +78,74 @@
 }
 
 nav, .body-right{
-  width: 60%;
+  width: 40%;
   flex-shrink: 1;
 }
 
 #navigation {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   list-style-type: none;
-  font-size: 250%;
   padding: 0px;
-  margin-top: 0px;
+  margin: 0px;
+  height: 40px;
+  gap: 20px;
+}
+
+
+#navigation li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #navigation a {
   text-decoration: none;
+  font-weight: 200;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  top: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
   color: black;
 }
+
+#navigation a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: left 0.3s ease;
+  mix-blend-mode: difference;
+}
+
+
+#navigation .right.nothighlighted a:hover::before {
+  left: -85%;
+}
+
+#navigation .left.nothighlighted a:hover::before {
+  left: 85%;
+}
+
+
+.highlighted a::before {
+  left: 0;
+  transition: left 0.3s ease;
+}
+
+.right.nothighlighted a::before {
+  left: -100%;
+}
+
+.left.nothighlighted a::before {
+  left: 100%;
+}
+
 
 
 html {
@@ -94,7 +166,7 @@ body, #root, .App, html {
 * {
   font-family: "Neue";
   box-sizing: border-box;
-  background-color: lavender;
+  background-color: #FCFCFC;
 }
 
 header, .body{
@@ -104,12 +176,15 @@ header, .body{
   gap: 50px;
 }
 
-.highlighted{
-  opacity: 1;
-}
 
-.nothighlighted{
-  opacity: 0.5;
+.project-header{
+  font-family: "Seasons";
+  text-align: left;
+  font-size: 250%;
+  margin: 0px 0px 20px 0px;
+  position: sticky;
+  top: 0;
+  padding: 10px 0;
 }
 
 
@@ -119,28 +194,116 @@ header, .body{
   justify-content: space-between;
   list-style-type: none;
   align-items: left;
-  font-size: 250%;
-  height: 100%;
   margin: 0px;
   padding: 0px;
 }
 
-.project-list li{
-  font-family: "Seasons";
+.project-list a{
+  display: flex;
+  align-items: center;
+  font-weight: 100;
   text-align: left;
+  font-size: 180%;
   padding-left: 0px;
-  transition: all 0.3s ease-in-out;
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  padding-bottom: 10px; 
+  margin-bottom: 10px; 
+  margin-right: 10px;
 }
 
-.project-list li:hover{
+.project-list li{
+  transition: all 0.3s ease-in-out;
+}
+
+.projects {
+  overflow-y: auto;
+  position: relative;
+  height: calc(100vh - 227px); /* this is the border*2 and the gap between nav and height of nav*/
+}
+
+.project-list a:hover li{
   padding-left: 30px;
 }
 
-.portfolio-image{
+.project-list a::before {
+  content: ''; /* Ensure the icon content is empty */
+  display: inline-block; /* Make it inline so it's in line with the text */
+  width: 16px; /* Adjust width as needed */
+  height: 16px; /* Adjust height as needed */
+  background-image: url('./assets/icon.svg'); /* Replace 'icon.svg' with the path to your SVG file */
+  background-size: contain; /* Ensure the SVG icon fits within the specified dimensions */
+  background-repeat: no-repeat; /* Prevent the icon from repeating */
+  opacity: 1; /* Initially hide the icon */
+  position: absolute;
+  transition: all 0.3s ease-in-out; /* Apply transition for opacity */
+  left: -20px;
+}
+
+.project-list a:hover::before {
+  opacity: 1; /* Show the icon on hover */
+  transform: rotate(360deg); /* Rotate the icon */
+  animation: spin 3s infinite linear; /* Rotate the icon indefinitely */
+  left: 0%;
+}
+
+/* Define the additional text */
+.project-list a::after {
+  content: 'VIEW →'; /* Add the additional text */
+  display: inline-block; /* Make it inline so it's in line with the text */
+  opacity: 0; /* Initially hide the text */
+  text-align: right;
+  flex-grow: 1; /* Allow the text to grow and fill the remaining space */
+  font-size: 60%;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.project-list a:hover::after {
+  opacity: 1;
+}
+
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
+
+.portfolio-image, .portfolio-preview{
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.portfolio-preview{
+  background-color: #DADADA;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: left;
+}
+
+.portfolio-preview div{
+  background-color: transparent;
+}
+
+.portfolio-preview-title{
+  font-size: 400%;
+  font-family: Seasons;
+}
+
+.portfolio-preview-description{
+  font-size: 100%;
+  font-family: Neue;
+  font-weight: 200;
+  text-align: left;
 }
 
 .lower-align{
@@ -177,4 +340,32 @@ header, .body{
     transform: translate(-20px, 0);
     opacity: 0;
   }
+}
+
+
+
+
+
+
+/* For WebKit browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+  margin-top: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+  margin-top: auto; /* Push the scrollbar track to the bottom */
+}
+
+::-webkit-scrollbar-thumb {
+  background: none; /* Color of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: none; /* Color of the thumb on hover */
+}
+
+body {
+  scrollbar-color: none; /* Color of the thumb and track */
 }

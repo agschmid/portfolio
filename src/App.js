@@ -4,6 +4,9 @@ import { Routes, Route, Link, useLocation } from "react-router-dom";
 import About from './About';
 import Projects from './Projects';
 import Sonic from './Sonic';
+// import ReactGA from "react-ga4";
+// ReactGA.initialize('G-MSPZLVKWK8');
+
 
 
 
@@ -16,21 +19,23 @@ export default function App () {
     if (location !== displayLocation) setTransistionStage("fadeOut");
   }, [location, displayLocation]);
 
+  // useEffect(() => {
+  //   ReactGA.send({ hitType: "pageview", page: location.pathname, title: location.pathname });
+  // }, [location]);
 
       return (
         <div className="App">
           <header>
             <div id='home'>
               <div id='name'>Adrian<br/>Schmidt</div>
-              <div id='title'>creative<br/>technologist</div>
             </div>
             <nav>
               <ul id="navigation">
-                <li className={useLocation().pathname==='/' ? 'highlighted': 'nothighlighted'}>
-                <Link to="/">about</Link>
+                <li className={useLocation().pathname==='/projects' ? 'left highlighted': 'left nothighlighted'}>
+                <Link to="/projects">PROJECTS</Link>
                 </li>
-                <li className={useLocation().pathname==='/projects' ? 'highlighted': 'nothighlighted'}>
-                <Link to="/projects">projects</Link>
+                <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
+                <Link to="/">ABOUT ME</Link>
                 </li>
               </ul>
             </nav>
