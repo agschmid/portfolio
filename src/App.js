@@ -16,7 +16,7 @@ export default function App () {
   const [transitionStage, setTransistionStage] = useState("fadeIn");
 
   useEffect(() => {
-    if (location !== displayLocation) setTransistionStage("fadeOut");
+    if (location.pathname !== displayLocation.pathname) setTransistionStage("fadeOut");
   }, [location, displayLocation]);
 
   // useEffect(() => {

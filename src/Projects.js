@@ -8,7 +8,9 @@ export default function Projects(){
     const [currentProject, setCurrentProject] = useState("")
 
     useEffect(() => {
-        if (location !== displayLocation) setTransistionStage("fadeOut");
+        if (location.pathname !== displayLocation.pathname){
+            setTransistionStage("fadeOut");
+        } 
     }, [location, displayLocation]);
 
 
