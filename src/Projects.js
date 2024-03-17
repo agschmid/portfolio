@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { Link, useLocation } from "react-router-dom";
 
 export default function Projects(){   
+    const scrollRef = useRef(null);
+
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
     const [transitionStage, setTransistionStage] = useState("fadeIn");
-    const [currentProject, setCurrentProject] = useState("")
+    const [currentProject, setCurrentProject] = useState("");
 
     useEffect(() => {
         if (location.pathname !== displayLocation.pathname){
@@ -13,6 +15,33 @@ export default function Projects(){
         } 
     }, [location, displayLocation]);
 
+    
+    useEffect(() => {
+
+        const handleWheel = (event) => {
+            const container = scrollRef.current;
+            // Calculate the new scrollTop value based on the wheel delta
+            const delta = event.deltaY || event.detail || event.wheelDelta;
+            const newScrollTop = container.scrollTop + delta;
+
+            // Calculate the maximum scroll height
+            const maxScrollHeight = container.scrollHeight - container.clientHeight;
+
+            // Limit the new scrollTop value to the maximum scroll height
+            const limitedScrollTop = Math.max(0, Math.min(maxScrollHeight, newScrollTop));
+
+            container.scrollTop = limitedScrollTop;
+          };
+      
+          // Add event listener to the container for the 'wheel' event
+          document.addEventListener('wheel', handleWheel, { passive: false });
+      
+          // Clean up the event listener when the component unmounts
+          return () => {
+            document.removeEventListener('wheel', handleWheel);
+          };
+        }, []); // Empty dependency array ensures this effect runs only once
+      
 
     // Function to handle hover state change
     const handleHover = (title) => {
@@ -41,7 +70,7 @@ export default function Projects(){
                 </div>
             </div>
 
-            <div className='body-right projects'>
+            <div className='body-right projects firefox-scroll' ref={scrollRef}>
                 <h3 className='project-header'>Professional Work</h3>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
                     <Link to="/projects/sonic" onMouseEnter={(e) => handleHover("SONIC MUTATIONS")} onMouseLeave={displayNone}><li>Sonic Mutations</li></Link>

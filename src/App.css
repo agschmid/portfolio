@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-html {
+body {
   overflow: hidden;
 }
 
@@ -185,6 +185,7 @@ header, .body{
   position: sticky;
   top: 0;
   padding: 10px 0;
+  z-index: 100;
 }
 
 
@@ -219,7 +220,7 @@ header, .body{
 }
 
 .projects {
-  overflow-y: auto;
+  overflow-y: hidden;
   position: relative;
   height: calc(100vh - 227px); /* this is the border*2 and the gap between nav and height of nav*/
 }
@@ -239,6 +240,7 @@ header, .body{
   opacity: 1; /* Initially hide the icon */
   position: absolute;
   transition: all 0.3s ease-in-out; /* Apply transition for opacity */
+  -webkit-transition: all 0.3s ease-in-out; /* Safari transition */
   left: -20px;
 }
 
@@ -258,12 +260,14 @@ header, .body{
   flex-grow: 1; /* Allow the text to grow and fill the remaining space */
   font-size: 60%;
   transition: all 0.3s ease-in-out;
-  font-weight: bold;
+  -webkit-transition: opacity 0.3s ease-in-out; /* Safari transition */
+  font-weight: 400;
 }
 
 .project-list a:hover::after {
   opacity: 1;
 }
+
 
 
 @keyframes spin {
@@ -364,6 +368,10 @@ header, .body{
 
 ::-webkit-scrollbar-thumb:hover {
   background: none; /* Color of the thumb on hover */
+}
+
+.firefox-scroll {
+  scrollbar-width: none; /* Firefox 64 */
 }
 
 body {
