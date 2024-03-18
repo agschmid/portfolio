@@ -176,16 +176,35 @@ header, .body{
   gap: 50px;
 }
 
+.project-count{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Seasons";
+  font-weight: bold;
+  font-size: 120%;
+  width: 30px;
+  height: 30px;
+  background-color: #D9D9D9;
+  border-radius: 100%;
+}
 
 .project-header{
   font-family: "Seasons";
   text-align: left;
   font-size: 250%;
+  margin: 0px;
+}
+
+.project-header-parent{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0px 0px 20px 0px;
   position: sticky;
   top: 0;
-  padding: 10px 0;
   z-index: 100;
+  padding: 10px 0;
 }
 
 
@@ -348,8 +367,26 @@ header, .body{
 
 
 
+.pointer{
+  position: fixed;
+  bottom: -22px;
+  background-color: rgba(255, 0, 0, 0);
+  z-index: 200;
+}
 
+.pointerParent{
+  cursor: pointer;
+  position: relative;
+  left: -22px;
+}
 
+.hidePointer{
+  transform: rotate(180deg); /* Rotate the element by 45 degrees */
+}
+
+.showPointer{
+  transform: rotate(0deg); /* Rotate the element by 45 degrees */
+}
 
 /* For WebKit browsers (e.g., Chrome, Safari) */
 ::-webkit-scrollbar {
