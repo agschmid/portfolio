@@ -17,8 +17,6 @@ export default function Projects(props){
         return () => clearTimeout(timer);
     }, [setBackgroundColor]);
 
-
-
     const scrollRef = useRef(null);
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
@@ -110,7 +108,12 @@ export default function Projects(props){
             <div className='body-left lower-align'>
                 <div className='portfolio-preview' style={{backgroundColor: currentColor}}>
                     <div className = 'portfolio-preview-title'>{currentProject}</div>
-                    <div className = 'portfolio-preview-description'>description</div>
+                    <img alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/test.png`}></img>
+                    <div className = 'portfolio-preview-description'>
+                        <div>AI Research</div>
+                        <div>Full Stack Development</div>
+                        <div>Prototyping</div>
+                    </div>
                 </div>
             </div>
 

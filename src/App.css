@@ -72,7 +72,7 @@ body {
 
 #home, .body-left{
   display: flex;
-  width: 40%;
+  flex-grow: 1;
 }
 
 #home {
@@ -182,7 +182,7 @@ header, .body{
   display: flex;
   justify-content: space-between;
   align-items: top;
-  gap: 50px;
+  gap: 80px;
 }
 
 .project-count{
@@ -313,7 +313,7 @@ header, .body{
 
 .portfolio-preview{
   background-color: #DADADA;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 20px;
   padding: 20px;
   text-align: left;
@@ -334,6 +334,28 @@ header, .body{
   font-family: Neue;
   font-weight: 200;
   text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.portfolio-preview-description div{
+  padding-right: 5px;
+  font-size: 150%;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+}
+
+
+.portfolio-preview-description div:not(:first-child)::before{
+  content: ''; /* Ensure the icon content is empty */
+  display: inline-block; /* Make it inline so it's in line with the text */
+  width: 12px; /* Adjust width as needed */
+  height: 12px; /* Adjust height as needed */
+  background-image: url('./assets/icon.svg'); /* Replace 'icon.svg' with the path to your SVG file */
+  background-size: contain; /* Ensure the SVG icon fits within the specified dimensions */
+  background-repeat: no-repeat; /* Prevent the icon from repeating */
+  padding-left: 5px;
 }
 
 .lower-align{
