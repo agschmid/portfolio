@@ -249,9 +249,6 @@ header, .body{
   height: calc(100vh - 227px); /* this is the border*2 and the gap between nav and height of nav*/
 }
 
-.project-list a:hover li{
-  padding-left: 30px;
-}
 
 .project-list a::before {
   content: ''; /* Ensure the icon content is empty */
@@ -268,11 +265,21 @@ header, .body{
   left: -20px;
 }
 
-.project-list a:hover::before {
-  opacity: 1; /* Show the icon on hover */
-  transform: rotate(360deg); /* Rotate the icon */
-  animation: spin 3s infinite linear; /* Rotate the icon indefinitely */
+
+
+.project-list a.hovered-project li{
+  padding-left: 30px;
+}
+
+.project-list a.hovered-project::before {
+  opacity: 1; 
+  transform: rotate(360deg); 
+  animation: spin 3s infinite linear; 
   left: 0%;
+} 
+
+.project-list a.hovered-project::after {
+  opacity: 1;
 }
 
 /* Define the additional text */
@@ -288,9 +295,7 @@ header, .body{
   font-weight: 400;
 }
 
-.project-list a:hover::after {
-  opacity: 1;
-}
+
 
 
 

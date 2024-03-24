@@ -25,6 +25,7 @@ export default function Projects(props){
     const [scrollerShowing, setScrollerShowing] = useState('true');
     const [scrollerColor, setScrollerColor] = useState(pageColor);
     const [currentColor, setCurrentColor] = useState("#D9D9D9");
+    const [currentProjectIndex, setCurrentProjectIndex] = useState('0')
 
     const enterScroll = () => {
         setScrollerColor(darken(0.1, pageColor));
@@ -71,15 +72,25 @@ export default function Projects(props){
       
 
     // Function to handle hover state change
-    const handleHover = (title, color) => {
+    const updateProjectDisplay = (index, title, color) => {
         setCurrentProject(title);
         setCurrentColor(color);
+        setCurrentProjectIndex(index);
     };
 
-    const displayNone = () => {
-        setCurrentProject("");
-        setCurrentColor('#D9D9D9');
-    };
+    useEffect(() => {
+        const projectRef = document.querySelector('.project-list');
+        if (projectRef) {
+            const projectAnchorList = projectRef.querySelectorAll('a');
+            for (let i = 0; i < projectAnchorList.length; i++) {
+                if (i === currentProjectIndex) {
+                    projectAnchorList[i].classList.add('hovered-project');
+                } else {
+                    projectAnchorList[i].classList.remove('hovered-project');
+                }
+            }
+        }
+    }, [currentProjectIndex]);
 
 
     const scrollMore = () => {
@@ -95,6 +106,12 @@ export default function Projects(props){
             behavior: 'smooth'
         });
     };
+
+    useEffect(() => {
+        // Call your function here when the component mounts
+        updateProjectDisplay(0, "SONIC MUTATIONS", '#FFF0A2');
+    }, []); // Empty dependency array means this effect runs only once on mount
+
 
     return (
         <div className={`${transitionStage} body`}
@@ -120,8 +137,8 @@ export default function Projects(props){
             <div className='body-right projects firefox-scroll' ref={scrollRef}>
                 <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Professional Work</h3><div className='project-count'>7</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    <Link to="/projects/sonic" onMouseEnter={(e) => handleHover("SONIC MUTATIONS", '#FFF0A2')} onMouseLeave={displayNone}><li>Sonic Mutations</li></Link>
-                    <Link to="/projects/system" onMouseEnter={(e) => handleHover("SYSTEM OF A SOUND", '#C2C2F2')} onMouseLeave={displayNone}><li>System of a Sound</li></Link>
+                    <Link to="/projects/sonic" onMouseEnter={(e) => updateProjectDisplay(0, "SONIC MUTATIONS", '#FFF0A2')}><li>Sonic Mutations</li></Link>
+                    <Link to="/projects/system" onMouseEnter={(e) => updateProjectDisplay(1, "SYSTEM OF A SOUND", '#C2C2F2')}><li>System of a Sound</li></Link>
                     <Link to="/projects/sonic"><li>PANIC!</li></Link>
                     <Link to="/projects/sonic"><li>Cybernetic Star Coasters</li></Link>
                     <Link to="/projects/sonic"><li>Futures Spinner</li></Link>
