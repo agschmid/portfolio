@@ -1,0 +1,66 @@
+[
+    {
+      "linkTitle": "Sonic Mutations",
+      "displayTitle": "SONIC MUTATIONS",
+      "color": "#FFF0A2",
+      "imageUrl": "test.png",
+      "relLink": "/sonic",
+      "roles": ["AI Research", "Full Stack Development", "Prototyping"]
+    },
+    {
+      "linkTitle": "System of a Sound",
+      "displayTitle": "SYSTEM OF A SOUND",
+      "color": "#C2C2F2",
+      "imageUrl": "temp.png",
+      "relLink": "/system",
+      "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    },
+    {
+        "linkTitle": "PANIC!",
+        "displayTitle": "PANIC",
+        "color": "#FFC2C2",
+        "imageUrl": "temp.png",
+        "relLink": "/system",
+        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    },
+    {
+        "linkTitle": "Cybernetic Star Coasters",
+        "displayTitle": "STAR COASTERS",
+        "color": "#FFD8C2",
+        "imageUrl": "temp.png",
+        "relLink": "/system",
+        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    },
+    {
+        "linkTitle": "Futures Spinner",
+        "displayTitle": "FUTURES SPINNER",
+        "color": "#FFC2E6",
+        "imageUrl": "temp.png",
+        "relLink": "/system",
+        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    },
+    {
+        "linkTitle": "Australian Cybernetic Interactive Poster",
+        "displayTitle": "AUSTRALIAN CYBERNETIC",
+        "color": "#FFEFC2",
+        "imageUrl": "temp.png",
+        "relLink": "/system",
+        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    },
+    {
+        "linkTitle": "Woroni Magazine Designs",
+        "displayTitle": "WORONI DESIGNS",
+        "color": "#E1FFC2",
+        "imageUrl": "temp.png",
+        "relLink": "/system",
+        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    },
+    {
+        "linkTitle": "8",
+        "displayTitle": "8",
+        "color": "#E1FFC2",
+        "imageUrl": "temp.png",
+        "relLink": "/system",
+        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+    }
+]

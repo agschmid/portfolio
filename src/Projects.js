@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { Link, useLocation } from "react-router-dom";
-import Pointer from './assets/Pointer.js'; // Import the SVG file
+import Pointer from './assets/Pointer.js'; 
 import { darken } from 'polished';
-
+import projectData from './professionalProject.json'; 
 
 export default function Projects(props){   
     const pageColor = "#FCFCFC"
@@ -24,7 +24,8 @@ export default function Projects(props){
     const [currentProject, setCurrentProject] = useState("");
     const [scrollerShowing, setScrollerShowing] = useState('true');
     const [scrollerColor, setScrollerColor] = useState(pageColor);
-    const [currentColor, setCurrentColor] = useState("#D9D9D9");
+    const [currentColor, setCurrentColor] = useState("");
+    const [currentImage, setCurrentImage] = useState("");
     const [currentProjectIndex, setCurrentProjectIndex] = useState('0')
 
     const enterScroll = () => {
@@ -59,23 +60,58 @@ export default function Projects(props){
             limitedScrollTop === maxScrollHeight ? setScrollerShowing(false) : setScrollerShowing(true);
                 
             container.scrollTop = limitedScrollTop;
+            setTopmostVisibleElement();
         };
       
         // Add event listener to the container for the 'wheel' event
         document.addEventListener('wheel', handleWheel, { passive: false });
+        document.querySelector('.body-right').addEventListener('scroll', setTopmostVisibleElement);
     
         // Clean up the event listener when the component unmounts
         return () => {
         document.removeEventListener('wheel', handleWheel);
         };
-    }, []); // Empty dependency array ensures this effect runs only once
+    }); // Empty dependency array ensures this effect runs only once
       
 
+
+    const setTopmostVisibleElement = () => {
+        const projectRef = document.querySelector('.projects');
+
+        if (projectRef) {
+            const projectAnchorList = projectRef.querySelectorAll('a');
+            const containerRect = projectRef.getBoundingClientRect();
+            const containerTop = containerRect.top;
+        
+            let topmostVisibleElement = null;
+            let minOffsetTop = Infinity;
+
+            for (let i = 0; i < projectAnchorList.length; i++) {
+                const element = projectAnchorList[i];
+                const boundingRect = element.getBoundingClientRect();
+        
+                // Check if the element is within the viewport vertically within the container
+                if (boundingRect.top >= containerTop+5) {
+                    // Find the element with the smallest offset from the top
+                    if (boundingRect.top < minOffsetTop) {
+                        minOffsetTop = boundingRect.top;
+                        topmostVisibleElement = i;
+                        console.log(i);
+                    }
+                }
+            }
+
+            setCurrentProjectIndex(topmostVisibleElement);
+            updateProjectDisplay(topmostVisibleElement, projectData[topmostVisibleElement].displayTitle, projectData[topmostVisibleElement].color, projectData[topmostVisibleElement].imageUrl);
+        }
+    }
+
     // Function to handle hover state change
-    const updateProjectDisplay = (index, title, color) => {
+    const updateProjectDisplay = (index, title, color, image) => {
         setCurrentProject(title);
         setCurrentColor(color);
         setCurrentProjectIndex(index);
+        setCurrentImage(image);
     };
 
     useEffect(() => {
@@ -108,9 +144,8 @@ export default function Projects(props){
     };
 
     useEffect(() => {
-        // Call your function here when the component mounts
-        updateProjectDisplay(0, "SONIC MUTATIONS", '#FFF0A2');
-    }, []); // Empty dependency array means this effect runs only once on mount
+        updateProjectDisplay(0, projectData[0].displayTitle, projectData[0].color, projectData[0].imageUrl);
+    }, []); 
 
 
     return (
@@ -125,28 +160,29 @@ export default function Projects(props){
             <div className='body-left lower-align'>
                 <div className='portfolio-preview' style={{backgroundColor: currentColor}}>
                     <div className = 'portfolio-preview-title'>{currentProject}</div>
-                    <img alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/test.png`}></img>
+                    <img className = 'preview-image' alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/${currentImage}`}></img>
                     <div className = 'portfolio-preview-description'>
-                        <div>AI Research</div>
-                        <div>Full Stack Development</div>
-                        <div>Prototyping</div>
+                        {projectData[currentProjectIndex].roles.map((role, i) => (
+                            <div key={i}>{role}</div>
+                        ))}
                     </div>
                 </div>
             </div>
 
-            <div className='body-right projects firefox-scroll' ref={scrollRef}>
+            <div className="body-right projects firefox-scroll" ref={scrollRef}>
                 <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Professional Work</h3><div className='project-count'>7</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    <Link to="/projects/sonic" onMouseEnter={(e) => updateProjectDisplay(0, "SONIC MUTATIONS", '#FFF0A2')}><li>Sonic Mutations</li></Link>
-                    <Link to="/projects/system" onMouseEnter={(e) => updateProjectDisplay(1, "SYSTEM OF A SOUND", '#C2C2F2')}><li>System of a Sound</li></Link>
-                    <Link to="/projects/sonic"><li>PANIC!</li></Link>
-                    <Link to="/projects/sonic"><li>Cybernetic Star Coasters</li></Link>
-                    <Link to="/projects/sonic"><li>Futures Spinner</li></Link>
-                    <Link to="/projects/sonic"><li>Australian Cybernetic Interactive Poster</li></Link>
-                    <Link to="/projects/sonic"><li>Woroni Magazine Designs</li></Link>
+                    {projectData.slice(0, 7).map((link, index) => (
+                        <Link key={index} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
+                    ))}
                 </ul>
                 <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Personal Work</h3><div className='project-count'>10</div></div>
-                <ul className='project-list'>
+                <ul className='project-list' style={{marginBottom: "40px"}}>
+                    {projectData.slice(7).map((link, index) => (
+                        <Link key={index} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
+                    ))}
+                </ul>
+                {/* <ul className='project-list'>
                     <Link to="/projects/sonic"><li>Machine Learning Bechdel Test</li></Link>
                     <Link to="/projects/sonic"><li>Laser Cut Iris</li></Link>
                     <Link to="/projects/sonic"><li>Quantum Phonon Research</li></Link>
@@ -156,8 +192,8 @@ export default function Projects(props){
                     <Link to="/projects/sonic"><li>Backwash Homepage</li></Link>
                     <Link to="/projects/sonic"><li>Arduino Doodle Jump</li></Link>
                     <Link to="/projects/sonic"><li>Smart Loading Zones</li></Link>
-                    <Link to="/projects/sonic"><li>Habit Helper</li></Link>
-                </ul>
+                    <Link to="/projects/sonic" className='lastProject'><li>Habit Helper</li></Link>
+                </ul> */}
 
                 <div onClick={scrollMore} onMouseEnter={enterScroll} onMouseLeave={leaveScroll} className='pointerParent'>
                     <Pointer  color={scrollerColor} rotation = {scrollerShowing ? 'showPointer' : 'hidePointer'}></Pointer>

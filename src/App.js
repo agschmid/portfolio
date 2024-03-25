@@ -17,6 +17,7 @@ export default function App () {
   const [displayLocation, setDisplayLocation] = useState(location);
   const [transitionStage, setTransistionStage] = useState("fadeIn");
   const [backgroundColor, setBackgroundColor] = useState("#FCFCFC")
+  const [menuShowing, setMenuShowing] = useState(false);
 
   useEffect(() => {
     // Set the background color of the entire HTML document
@@ -36,6 +37,10 @@ export default function App () {
   //   ReactGA.send({ hitType: "pageview", page: location.pathname, title: location.pathname });
   // }, [location]);
 
+  const toggleMenu = () => {
+    setMenuShowing(!menuShowing);
+  }
+
       return (
         <div className="App" style={{backgroundColor: backgroundColor}}>
           <header>
@@ -43,14 +48,17 @@ export default function App () {
               <div id='name'>Adrian<br/>Schmidt</div>
             </div>
             <nav>
-              <ul id="navigation">
-                <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}>
-                <Link to="/projects">PROJECTS</Link>
-                </li>
-                <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
-                <Link to="/">ABOUT ME</Link>
-                </li>
-              </ul>
+            <div className="hamburger" onClick={toggleMenu}>
+              ☰
+            </div>
+            <ul id="navigation" className={menuShowing ? 'showNav' : ''}>
+              <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}>
+              <Link to="/projects">PROJECTS</Link>
+              </li>
+              <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
+              <Link to="/">ABOUT ME</Link>
+              </li>
+            </ul>
             </nav>
           </header>
           <div

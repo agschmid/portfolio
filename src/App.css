@@ -60,6 +60,8 @@ body {
   text-align: left;
 }
 
+
+
 /* #title {
   writing-mode: vertical-rl;
   transform: scale(-1);
@@ -82,7 +84,6 @@ body {
 
 nav, .body-right{
   width: 40%;
-  flex-shrink: 1;
 }
 
 #navigation {
@@ -114,6 +115,8 @@ nav, .body-right{
   position: relative;
   color: black;
   z-index: 0;
+  width: 130px;
+  pointer-events: auto;
 }
 
 #navigation a::after {
@@ -174,8 +177,6 @@ body, #root, .App, html {
   display: flex;
   justify-content: space-between;
 }
-
-
 
 
 header, .body{
@@ -245,6 +246,7 @@ header, .body{
 
 .projects {
   overflow-y: hidden;
+  flex-shrink:0;
   position: relative;
   height: calc(100vh - 227px); /* this is the border*2 and the gap between nav and height of nav*/
 }
@@ -265,10 +267,13 @@ header, .body{
   left: -20px;
 }
 
-
+.project-list a li{
+  padding-right: 30px;
+}
 
 .project-list a.hovered-project li{
   padding-left: 30px;
+  padding-right: 0px
 }
 
 .project-list a.hovered-project::before {
@@ -289,12 +294,16 @@ header, .body{
   opacity: 0; /* Initially hide the text */
   text-align: right;
   flex-grow: 1; /* Allow the text to grow and fill the remaining space */
+  flex-shrink: 0;
   font-size: 60%;
   transition: all 0.3s ease-in-out;
   -webkit-transition: opacity 0.3s ease-in-out; /* Safari transition */
   font-weight: 400;
 }
 
+.hamburger{
+  display:none;
+}
 
 
 
@@ -320,9 +329,23 @@ header, .body{
   background-color: #DADADA;
   border: 1px solid black;
   border-radius: 20px;
-  padding: 20px;
+  padding: 50px;
   text-align: left;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.portfolio-preview .preview-image{
+  flex-grow: 1; /* This makes the item grow to fill available space */
+  flex-basis: auto; /* Allow the item to determine its own size based on content */
+  width: calc(100% + 100px); /* 100% width plus 50px padding on each side - update if padding on preview changes */
+  height: 200px;
+  margin-left: -50px; /* update if padding on preview changes */
+  border-radius: 0px;
+  object-fit: cover;
+  padding: 20px 0px;
 }
 
 .portfolio-preview div{
@@ -332,6 +355,7 @@ header, .body{
 .portfolio-preview-title{
   font-size: 400%;
   font-family: Seasons;
+  font-weight: bold;
 }
 
 .portfolio-preview-description{
@@ -451,4 +475,137 @@ body {
 
 .expanded{
   transform: scale(5); 
+}
+
+.hamburger{
+  color: white;
+  background-color: black;
+  font-weight: 200;
+  padding-top:4px;
+  border: 1px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 80px;
+  height: 40px;
+  font-size: 150%;
+}
+
+@media (max-width: 1000px) {
+  .portfolio-preview-title{
+    font-size: max(200%, min(400%, 5vw));
+  }
+
+  .portfolio-preview{
+    padding: 20px;
+  }
+
+  .portfolio-preview .preview-image{
+    width: calc(100% + 40px); /* 100% width plus 50px padding on each side - update if padding on preview changes */
+    margin-left: -20px; /* update if padding on preview changes */
+  }
+}
+
+@media (max-width: 730px) {
+  .pointerParent{
+    display: none;
+  }
+
+  .App{
+    gap: 20px;
+  }
+
+  .project-header{
+    font-size: 180%;
+  }
+
+  .portfolio-preview{
+    padding: 10px;
+  }
+
+  .projects{
+    height: fit-content;
+  }
+
+  .body {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .portfolio-preview-description {
+    display:none;
+  }
+
+  .portfolio-preview .preview-image{
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .portfolio-preview .preview-image{
+    width: calc(100% + 20px); /* 100% width plus 50px padding on each side - update if padding on preview changes */
+    margin-left: -10px; /* update if padding on preview changes */
+  }
+
+  .body-left{
+    height: 320px;
+  }
+
+  .body-right{
+    width: 100%;
+  }
+
+  .projects {
+    height: calc(100vh - 550px); /* this is the border*2 and the gap between nav and height of nav*/
+    overflow-y: auto;
+  }
+
+  .lastProject{
+    position: sticky;
+    top: 0px;
+    margin-bottom: 1000px;
+  }
+  
+  .hamburger{
+    display:block;
+  }
+
+  #name {
+    font-size: 150%;
+  }
+
+  html {
+    padding: 30px;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center; 
+    justify-content: right;
+    position: relative;
+  }
+
+  #navigation {
+      flex-direction: column;
+      position: absolute;
+      top: 30px;
+      padding-top: 10px;
+      right: 0px;
+      margin: 0;
+      display: none; /* Hide by default */
+      gap: 10px;
+      z-index: 999;
+      pointer-events: none;
+  }
+
+  #navigation a {
+    background-color: white;
+  }
+
+  .hamburger {
+      cursor: pointer;
+  }
+
+  #navigation.showNav{
+    display: flex;
+  }
+
 }
