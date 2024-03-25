@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import Pointer from './assets/Pointer.js'; 
 import { darken } from 'polished';
 import projectData from './professionalProject.json'; 
+import mobileCheck from './mobileCheck.js';
 
 export default function Projects(props){   
     const pageColor = "#FCFCFC"
@@ -27,6 +28,7 @@ export default function Projects(props){
     const [currentColor, setCurrentColor] = useState("");
     const [currentImage, setCurrentImage] = useState("");
     const [currentProjectIndex, setCurrentProjectIndex] = useState('0')
+    const isMobile = mobileCheck();
 
     const enterScroll = () => {
         setScrollerColor(darken(0.1, pageColor));
@@ -72,37 +74,37 @@ export default function Projects(props){
         document.removeEventListener('wheel', handleWheel);
         };
     }); // Empty dependency array ensures this effect runs only once
-      
-
+    
 
     const setTopmostVisibleElement = () => {
-        const projectRef = document.querySelector('.projects');
+        if (isMobile){
+            const projectRef = document.querySelector('.projects');
 
-        if (projectRef) {
-            const projectAnchorList = projectRef.querySelectorAll('a');
-            const containerRect = projectRef.getBoundingClientRect();
-            const containerTop = containerRect.top;
-        
-            let topmostVisibleElement = null;
-            let minOffsetTop = Infinity;
-
-            for (let i = 0; i < projectAnchorList.length; i++) {
-                const element = projectAnchorList[i];
-                const boundingRect = element.getBoundingClientRect();
-        
-                // Check if the element is within the viewport vertically within the container
-                if (boundingRect.top >= containerTop+5) {
-                    // Find the element with the smallest offset from the top
-                    if (boundingRect.top < minOffsetTop) {
-                        minOffsetTop = boundingRect.top;
-                        topmostVisibleElement = i;
-                        console.log(i);
+            if (projectRef) {
+                const projectAnchorList = projectRef.querySelectorAll('a');
+                const containerRect = projectRef.getBoundingClientRect();
+                const containerTop = containerRect.top;
+            
+                let topmostVisibleElement = null;
+                let minOffsetTop = Infinity;
+    
+                for (let i = 0; i < projectAnchorList.length; i++) {
+                    const element = projectAnchorList[i];
+                    const boundingRect = element.getBoundingClientRect();
+            
+                    // Check if the element is within the viewport vertically within the container
+                    if (boundingRect.top >= containerTop+5) {
+                        // Find the element with the smallest offset from the top
+                        if (boundingRect.top < minOffsetTop) {
+                            minOffsetTop = boundingRect.top;
+                            topmostVisibleElement = i;
+                        }
                     }
                 }
+    
+                setCurrentProjectIndex(topmostVisibleElement);
+                updateProjectDisplay(topmostVisibleElement, projectData[topmostVisibleElement].displayTitle, projectData[topmostVisibleElement].color, projectData[topmostVisibleElement].imageUrl);
             }
-
-            setCurrentProjectIndex(topmostVisibleElement);
-            updateProjectDisplay(topmostVisibleElement, projectData[topmostVisibleElement].displayTitle, projectData[topmostVisibleElement].color, projectData[topmostVisibleElement].imageUrl);
         }
     }
 
@@ -115,7 +117,7 @@ export default function Projects(props){
     };
 
     useEffect(() => {
-        const projectRef = document.querySelector('.project-list');
+        const projectRef = document.querySelector('.projects');
         if (projectRef) {
             const projectAnchorList = projectRef.querySelectorAll('a');
             for (let i = 0; i < projectAnchorList.length; i++) {
@@ -179,7 +181,7 @@ export default function Projects(props){
                 <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Personal Work</h3><div className='project-count'>10</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
                     {projectData.slice(7).map((link, index) => (
-                        <Link key={index} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
+                        <Link key={index+7} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index+7, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
                     ))}
                 </ul>
                 {/* <ul className='project-list'>
