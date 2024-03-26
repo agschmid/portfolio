@@ -101,12 +101,50 @@ export default function Projects(props){
                         }
                     }
                 }
-    
+                if (topmostVisibleElement===null) {topmostVisibleElement=projectAnchorList.length-1};
                 setCurrentProjectIndex(topmostVisibleElement);
                 updateProjectDisplay(topmostVisibleElement, projectData[topmostVisibleElement].displayTitle, projectData[topmostVisibleElement].color, projectData[topmostVisibleElement].imageUrl);
             }
         }
     }
+
+    const [marginBottom, setMarginBottom] = useState(0);
+
+    useEffect(() => {
+      const updateMarginBottom = () => {
+        if (isMobile){
+            const projectsContainer = document.querySelector('.projects');
+            const projectHeader = document.querySelector('.project-header-parent');
+            const projectLast = document.querySelector('.lastProject');
+    
+            if (projectsContainer && projectHeader && projectLast) {
+            const containerStyle = window.getComputedStyle(projectsContainer);
+            const paddingTop = parseFloat(containerStyle.paddingTop);
+            const paddingBottom = parseFloat(containerStyle.paddingBottom);
+    
+            const projectsHeight = projectsContainer.clientHeight - paddingTop - paddingBottom;
+            const projectHeaderHeight = projectHeader.clientHeight;
+            const projectLastHeight = projectLast.clientHeight;
+    
+            const newMarginBottom = projectsHeight - projectHeaderHeight - 2*projectLastHeight;
+            setMarginBottom(newMarginBottom);
+            }
+        }
+      };
+  
+      // Initial update
+      updateMarginBottom();
+  
+      // Update on resize
+      const handleResize = () => {
+        updateMarginBottom();
+      };
+  
+      window.addEventListener('resize', handleResize);
+  
+      // Cleanup
+      return () => window.removeEventListener('resize', handleResize);
+    }, [isMobile]);
 
     // Function to handle hover state change
     const updateProjectDisplay = (index, title, color, image) => {
@@ -180,8 +218,16 @@ export default function Projects(props){
                 </ul>
                 <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Personal Work</h3><div className='project-count'>10</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    {projectData.slice(7).map((link, index) => (
-                        <Link key={index+7} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index+7, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
+                    {projectData.slice(7).map((link, index, array) => (
+                        <Link
+                            key={index + 7}
+                            to={"/projects" + link.relLink}
+                            onMouseEnter={(e) => updateProjectDisplay(index + 7, link.displayTitle, link.color, link.imageUrl)}
+                            style={index === array.length - 1 ? {marginBottom: `${marginBottom}px` } : {}}
+                            className={index === array.length - 1 ? "lastProject" : ""}
+                        >
+                            <li>{link.linkTitle}</li>
+                        </Link>
                     ))}
                 </ul>
                 {/* <ul className='project-list'>

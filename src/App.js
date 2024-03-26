@@ -63,7 +63,7 @@ export default function App () {
             </nav>
           </header>
           <div
-            className={`${transitionStage}`}
+            className={`${transitionStage} allParent`}
             onAnimationEnd={() => {
               if (transitionStage === "fadeOut") {
                 setTransistionStage("fadeIn");
