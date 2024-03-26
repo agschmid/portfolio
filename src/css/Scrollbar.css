@@ -1,0 +1,26 @@
+/* For WebKit browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 6px;
+    margin-top: 50px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: none;
+    margin-top: auto;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: none;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: none;
+  }
+  
+  .firefox-scroll {
+    scrollbar-width: none;
+  }
+  
+  body {
+    scrollbar-color: none;
+  }

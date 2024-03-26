@@ -1,0 +1,38 @@
+/* Font Load */
+
+@font-face {
+    font-family: Seasons;
+    src: url("../fonts/seasons/regular.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: Seasons;
+    font-weight: bold;
+    src: url("../fonts/seasons/bold.otf") format("opentype");
+  }
+  
+  @font-face {
+    font-family: Seasons;
+    font-weight: lighter;
+    src: url("../fonts/seasons/light.otf") format("opentype");
+  }
+  
+  
+  @font-face {
+    font-family: "Neue";
+    src: url("../fonts/neue/bold.ttf") format("truetype");
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: "Neue";
+    font-weight: 200;
+    src: url("../fonts/neue/roman.ttf") format("truetype");
+  }
+  
+  
+  @font-face {
+    font-family: "Neue";
+    font-weight: 100;
+    src: url("../fonts/neue/thin.ttf") format("truetype");
+  }

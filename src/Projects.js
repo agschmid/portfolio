@@ -1,3 +1,4 @@
+import './css/Projects.css';
 import React, {useState, useEffect, useRef} from 'react';
 import { Link, useLocation } from "react-router-dom";
 import Pointer from './assets/Pointer.js'; 
@@ -8,16 +9,6 @@ import mobileCheck from './mobileCheck.js';
 export default function Projects(props){   
     const pageColor = "#FCFCFC"
     const setBackgroundColor = props.setBackgroundColor;
-    const [elementColor, setElementColor] = useState("rgba(255,0,0,0)");
-
-    useEffect(() => {
-        setBackgroundColor(pageColor);
-        const timer = setTimeout(() => {
-            setElementColor(pageColor);
-        }, 300);
-        return () => clearTimeout(timer);
-    }, [setBackgroundColor]);
-
     const scrollRef = useRef(null);
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
@@ -29,53 +20,98 @@ export default function Projects(props){
     const [currentImage, setCurrentImage] = useState("");
     const [currentProjectIndex, setCurrentProjectIndex] = useState('0')
     const isMobile = mobileCheck();
+    const [elementColor, setElementColor] = useState("rgba(255,0,0,0)");
+    const [marginBottom, setMarginBottom] = useState(0);
 
-    const enterScroll = () => {
-        setScrollerColor(darken(0.1, pageColor));
-    };
-    
-    const leaveScroll = () => {
-        setScrollerColor(pageColor)
-    };
 
+    // Animate the page if it changes
     useEffect(() => {
         if (location.pathname !== displayLocation.pathname){
             setTransistionStage("fadeOut");
         } 
     }, [location, displayLocation]);
 
+    // Set the page color and background colors on page load
+    useEffect(() => {
+        setBackgroundColor(pageColor);
+        const timer = setTimeout(() => {
+            setElementColor(pageColor);
+        }, 300);
+        return () => clearTimeout(timer);
+    }, [setBackgroundColor]);
 
-    
+    // Set the displayed project to the first one
+    useEffect(() => {
+        updateProjectDisplay(0, projectData[0].displayTitle, projectData[0].color, projectData[0].imageUrl);
+    }, []); 
+
+    // Use the wheel event to scroll down the projects list
     useEffect(() => {
         const handleWheel = (event) => {
             const container = scrollRef.current;
-            // Calculate the new scrollTop value based on the wheel delta
             const delta = event.deltaY || event.detail || event.wheelDelta;
             const newScrollTop = container.scrollTop + delta;
-
-            // Calculate the maximum scroll height
             const maxScrollHeight = container.scrollHeight - container.clientHeight;
-
-            // Limit the new scrollTop value to the maximum scroll height
             const limitedScrollTop = Math.max(0, Math.min(maxScrollHeight, newScrollTop));
-
             limitedScrollTop === maxScrollHeight ? setScrollerShowing(false) : setScrollerShowing(true);
-                
             container.scrollTop = limitedScrollTop;
             setTopmostVisibleElement();
         };
       
-        // Add event listener to the container for the 'wheel' event
         document.addEventListener('wheel', handleWheel, { passive: false });
         document.querySelector('.body-right').addEventListener('scroll', setTopmostVisibleElement);
-    
-        // Clean up the event listener when the component unmounts
         return () => {
-        document.removeEventListener('wheel', handleWheel);
+            document.removeEventListener('wheel', handleWheel);
         };
-    }); // Empty dependency array ensures this effect runs only once
-    
+    });
 
+    // Set the current project to the hovered link's index
+    useEffect(() => {
+        const projectRef = document.querySelector('.projects');
+        if (projectRef) {
+            const projectAnchorList = projectRef.querySelectorAll('a');
+            for (let i = 0; i < projectAnchorList.length; i++) {
+                if (i === currentProjectIndex) {
+                    projectAnchorList[i].classList.add('hovered-project');
+                } else {
+                    projectAnchorList[i].classList.remove('hovered-project');
+                }
+            }
+        }
+    }, [currentProjectIndex]);
+    
+    // Functions to darken the scroller on hover
+    const enterScroll = () => {
+        setScrollerColor(darken(0.1, pageColor));
+    };
+    const leaveScroll = () => {
+        setScrollerColor(pageColor)
+    };
+
+    // Scroll up/down the page when the scroller button is pressed
+    const scrollMore = () => {
+        const container = scrollRef.current;
+        const newScrollTop = scrollerShowing ? container.scrollTop + container.clientHeight : 0;
+        const maxScrollHeight = container.scrollHeight - container.clientHeight;
+
+        const limitedScrollTop = Math.max(0, Math.min(maxScrollHeight, newScrollTop));
+
+        limitedScrollTop === maxScrollHeight ? setScrollerShowing(false) : setScrollerShowing(true);
+        container.scrollTo({
+            top: limitedScrollTop,
+            behavior: 'smooth'
+        });
+    };
+    
+    // Function to handle which project is displayed on the side
+    const updateProjectDisplay = (index, title, color, image) => {
+        setCurrentProject(title);
+        setCurrentColor(color);
+        setCurrentProjectIndex(index);
+        setCurrentImage(image);
+    };
+
+    // On mobile, set the current project to the top scrolled one
     const setTopmostVisibleElement = () => {
         if (isMobile){
             const projectRef = document.querySelector('.projects');
@@ -108,85 +144,33 @@ export default function Projects(props){
         }
     }
 
-    const [marginBottom, setMarginBottom] = useState(0);
-
+    // Set the margin of the bottom project on mobile so it scrolls to the top
     useEffect(() => {
-      const updateMarginBottom = () => {
-        if (isMobile){
-            const projectsContainer = document.querySelector('.projects');
-            const projectHeader = document.querySelector('.project-header-parent');
-            const projectLast = document.querySelector('.lastProject');
-    
-            if (projectsContainer && projectHeader && projectLast) {
-            const containerStyle = window.getComputedStyle(projectsContainer);
-            const paddingTop = parseFloat(containerStyle.paddingTop);
-            const paddingBottom = parseFloat(containerStyle.paddingBottom);
-    
-            const projectsHeight = projectsContainer.clientHeight - paddingTop - paddingBottom;
-            const projectHeaderHeight = projectHeader.clientHeight;
-            const projectLastHeight = projectLast.clientHeight;
-    
-            const newMarginBottom = projectsHeight - projectHeaderHeight - 2*projectLastHeight;
-            setMarginBottom(newMarginBottom);
-            }
-        }
-      };
-  
-      // Initial update
-      updateMarginBottom();
-  
-      // Update on resize
-      const handleResize = () => {
-        updateMarginBottom();
-      };
-  
-      window.addEventListener('resize', handleResize);
-  
-      // Cleanup
-      return () => window.removeEventListener('resize', handleResize);
-    }, [isMobile]);
-
-    // Function to handle hover state change
-    const updateProjectDisplay = (index, title, color, image) => {
-        setCurrentProject(title);
-        setCurrentColor(color);
-        setCurrentProjectIndex(index);
-        setCurrentImage(image);
-    };
-
-    useEffect(() => {
-        const projectRef = document.querySelector('.projects');
-        if (projectRef) {
-            const projectAnchorList = projectRef.querySelectorAll('a');
-            for (let i = 0; i < projectAnchorList.length; i++) {
-                if (i === currentProjectIndex) {
-                    projectAnchorList[i].classList.add('hovered-project');
-                } else {
-                    projectAnchorList[i].classList.remove('hovered-project');
+        const updateMarginBottom = () => {
+            if (isMobile){
+                const projectsContainer = document.querySelector('.projects');
+                const projectHeader = document.querySelector('.project-header-parent');
+                const projectLast = document.querySelector('.lastProject');
+                if (projectsContainer && projectHeader && projectLast) {
+                    const containerStyle = window.getComputedStyle(projectsContainer);
+                    const paddingTop = parseFloat(containerStyle.paddingTop);
+                    const paddingBottom = parseFloat(containerStyle.paddingBottom);
+                    const projectsHeight = projectsContainer.clientHeight - paddingTop - paddingBottom;
+                    const projectHeaderHeight = projectHeader.clientHeight;
+                    const projectLastHeight = projectLast.clientHeight;
+                    const newMarginBottom = projectsHeight - projectHeaderHeight - 2*projectLastHeight;
+                    setMarginBottom(newMarginBottom);
                 }
             }
-        }
-    }, [currentProjectIndex]);
-
-
-    const scrollMore = () => {
-        const container = scrollRef.current;
-        const newScrollTop = scrollerShowing ? container.scrollTop + container.clientHeight : 0;
-        const maxScrollHeight = container.scrollHeight - container.clientHeight;
-
-        const limitedScrollTop = Math.max(0, Math.min(maxScrollHeight, newScrollTop));
-
-        limitedScrollTop === maxScrollHeight ? setScrollerShowing(false) : setScrollerShowing(true);
-        container.scrollTo({
-            top: limitedScrollTop,
-            behavior: 'smooth'
-        });
-    };
-
-    useEffect(() => {
-        updateProjectDisplay(0, projectData[0].displayTitle, projectData[0].color, projectData[0].imageUrl);
-    }, []); 
-
+        };
+            updateMarginBottom();
+            const handleResize = () => {
+                updateMarginBottom();
+            };
+    
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+    }, [isMobile]);
 
     return (
         <div className={`${transitionStage} body`}
@@ -196,7 +180,6 @@ export default function Projects(props){
             setDisplayLocation(location);
           }
         }}>
-
             <div className='body-left lower-align'>
                 <div className='portfolio-preview' style={{backgroundColor: currentColor}}>
                     <div className = 'portfolio-preview-title'>{currentProject}</div>
@@ -230,19 +213,6 @@ export default function Projects(props){
                         </Link>
                     ))}
                 </ul>
-                {/* <ul className='project-list'>
-                    <Link to="/projects/sonic"><li>Machine Learning Bechdel Test</li></Link>
-                    <Link to="/projects/sonic"><li>Laser Cut Iris</li></Link>
-                    <Link to="/projects/sonic"><li>Quantum Phonon Research</li></Link>
-                    <Link to="/projects/sonic"><li>Ping 3D Web Game</li></Link>
-                    <Link to="/projects/sonic"><li>Autonomous Scooter Interface</li></Link>
-                    <Link to="/projects/sonic"><li>Baking</li></Link>
-                    <Link to="/projects/sonic"><li>Backwash Homepage</li></Link>
-                    <Link to="/projects/sonic"><li>Arduino Doodle Jump</li></Link>
-                    <Link to="/projects/sonic"><li>Smart Loading Zones</li></Link>
-                    <Link to="/projects/sonic" className='lastProject'><li>Habit Helper</li></Link>
-                </ul> */}
-
                 <div onClick={scrollMore} onMouseEnter={enterScroll} onMouseLeave={leaveScroll} className='pointerParent'>
                     <Pointer  color={scrollerColor} rotation = {scrollerShowing ? 'showPointer' : 'hidePointer'}></Pointer>
                 </div>
