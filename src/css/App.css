@@ -23,6 +23,7 @@ body, #root, .App, html {
   text-align: center;
   flex-direction: column;
   gap: 50px;
+  transition: background-color 0.3s linear;
 }
 
 #home {
@@ -238,12 +239,6 @@ header, .body{
     display: flex;
   }
 
-  .body-right{
-    width: 100%;
-    overflow-y: scroll;
-    height: auto;
-    flex-shrink:1;
-  }
 
 }
 

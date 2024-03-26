@@ -41,7 +41,7 @@ export default function App () {
   // }, [location]);
 
   return (
-  <div className="App" style={{backgroundColor: backgroundColor}}>
+  <div className="App">
     <header>
       <div id='home'>
         <div id='name'>Adrian<br/>Schmidt</div>
@@ -51,7 +51,8 @@ export default function App () {
         ☰
       </div>
       <ul id="navigation" className={menuShowing ? 'showNav' : ''}>
-        <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}>
+        {/* <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}> */}
+        <li className={useLocation().pathname === '/projects' ? 'left highlighted': 'left nothighlighted'}>
         <Link to="/projects">PROJECTS</Link>
         </li>
         <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
