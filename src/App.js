@@ -53,10 +53,10 @@ export default function App () {
       <ul id="navigation" className={menuShowing ? 'showNav' : ''}>
         {/* <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}> */}
         <li className={useLocation().pathname === '/projects' ? 'left highlighted': 'left nothighlighted'}>
-        <Link to="/projects">PROJECTS</Link>
+        <Link to="/projects" className='button'>PROJECTS</Link>
         </li>
         <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
-        <Link to="/">ABOUT ME</Link>
+        <Link to="/"  className='button'>ABOUT ME</Link>
         </li>
       </ul>
       </nav>

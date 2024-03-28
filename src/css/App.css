@@ -55,7 +55,7 @@ nav, .body-right{
   justify-content: center;
 }
 
-#navigation a {
+.button {
   text-decoration: none;
   font-weight: 200;
   padding: 10px 20px;
@@ -71,7 +71,7 @@ nav, .body-right{
   pointer-events: auto;
 }
 
-#navigation a::after {
+.button::after {
   content: '';
   position: absolute;
   top: 0;
@@ -82,7 +82,7 @@ nav, .body-right{
   mix-blend-mode: difference;
 }
 
-#navigation a::before {
+.button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -93,24 +93,24 @@ nav, .body-right{
   z-index: -1;
 }
 
-#navigation .right.nothighlighted a:hover::after, #navigation .right.nothighlighted a:hover::before{
+.right.nothighlighted .button:hover::after, .right.nothighlighted .button:hover::before{
   left: -85%;
 }
 
-#navigation .left.nothighlighted a:hover::after, #navigation .left.nothighlighted a:hover::before{
+.left.nothighlighted .button:hover::after, .left.nothighlighted .button:hover::before{
   left: 85%;
 }
 
-.highlighted a::after, .highlighted a::before {
+.highlighted .button::after, .highlighted .button::before {
   left: 0;
   transition: left 0.3s ease;
 }
 
-.right.nothighlighted a::after, .right.nothighlighted a::before {
+.right.nothighlighted .button::after, .right.nothighlighted .button::before {
   left: -100%;
 }
 
-.left.nothighlighted a::after, .left.nothighlighted a::before {
+.left.nothighlighted .button::after, .left.nothighlighted .button::before {
   left: 100%;
 }
 
@@ -231,7 +231,7 @@ header, .body{
       pointer-events: none;
   }
 
-  #navigation a {
+  #navigation .button {
     background-color: white;
   }
 

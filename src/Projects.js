@@ -1,4 +1,4 @@
-import './css/Projects.css';
+import './css/ProjectDisplay.css';
 import React, {useState, useEffect, useRef} from 'react';
 import { Link, useLocation } from "react-router-dom";
 import Pointer from './assets/Pointer.js'; 
