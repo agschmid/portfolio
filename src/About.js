@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 
 export default function About(props){   
-    const pageColor = "#FCFCFC"
+    const pageColor = "#D5D3C5"
     const setBackgroundColor = props.setBackgroundColor;
     useEffect(() => {
         setBackgroundColor(pageColor);

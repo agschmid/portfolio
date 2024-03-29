@@ -7,8 +7,10 @@ import projectData from './professionalProject.json';
 import mobileCheck from './mobileCheck.js';
 
 export default function Projects(props){   
-    const pageColor = "#FCFCFC"
+    const pageColor = "#D5D3C5"
+    const textColor = '#000000'
     const setBackgroundColor = props.setBackgroundColor;
+    const setTextColor = props.setTextColor;
     const scrollRef = useRef(null);
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
@@ -34,11 +36,12 @@ export default function Projects(props){
     // Set the page color and background colors on page load
     useEffect(() => {
         setBackgroundColor(pageColor);
+        setTextColor(textColor);
         const timer = setTimeout(() => {
             setElementColor(pageColor);
         }, 300);
         return () => clearTimeout(timer);
-    }, [setBackgroundColor]);
+    }, [setBackgroundColor, setTextColor]);
 
     // Set the displayed project to the first one
     useEffect(() => {
@@ -172,6 +175,7 @@ export default function Projects(props){
             return () => window.removeEventListener('resize', handleResize);
     }, [isMobile]);
 
+
     return (
         <div className={`${transitionStage} body`}
         onAnimationEnd={() => {
@@ -186,20 +190,20 @@ export default function Projects(props){
                     <img className = 'preview-image' alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/${currentImage}`}></img>
                     <div className = 'portfolio-preview-description'>
                         {projectData[currentProjectIndex].roles.map((role, i) => (
-                            <div key={i}>{role}</div>
+                            <div key={i} className='colored'>{role}</div>
                         ))}
                     </div>
                 </div>
             </div>
 
             <div className="body-right projects firefox-scroll" ref={scrollRef}>
-                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Professional Work</h3><div className='project-count'>7</div></div>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>professional work</h3><div className='project-count'>7</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
                     {projectData.slice(0, 7).map((link, index) => (
                         <Link key={index} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
                     ))}
                 </ul>
-                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>Personal Work</h3><div className='project-count'>10</div></div>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>personal work</h3><div className='project-count'>10</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
                     {projectData.slice(7).map((link, index, array) => (
                         <Link

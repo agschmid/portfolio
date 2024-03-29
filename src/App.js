@@ -18,16 +18,19 @@ export default function App () {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
   const [transitionStage, setTransistionStage] = useState("fadeIn");
-  const [backgroundColor, setBackgroundColor] = useState("#FCFCFC")
+  const [backgroundColor, setBackgroundColor] = useState("#D5D3C5");
+  const [textColor, setTextColor] = useState("#000000")
   const [menuShowing, setMenuShowing] = useState(false);
 
   // Set the background color of the entire HTML document
   useEffect(() => {
     document.documentElement.style.backgroundColor = backgroundColor;
+    document.documentElement.style.color = textColor;
     return () => {
       document.documentElement.style.backgroundColor = '';
+      document.documentElement.style.textColor = '';
     };
-  }, [backgroundColor]);
+  }, [backgroundColor, textColor]);
 
   // Animate out if the page changes
   useEffect(() => {
@@ -44,7 +47,7 @@ export default function App () {
   <div className="App">
     <header>
       <div id='home'>
-        <div id='name'>Adrian<br/>Schmidt</div>
+        <div id='name'>adrian<br/>schmidt</div>
       </div>
       <nav>
       <div className="hamburger" onClick={() => setMenuShowing(!menuShowing)}>
@@ -53,10 +56,10 @@ export default function App () {
       <ul id="navigation" className={menuShowing ? 'showNav' : ''}>
         {/* <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}> */}
         <li className={useLocation().pathname === '/projects' ? 'left highlighted': 'left nothighlighted'}>
-        <Link to="/projects" className='button'>PROJECTS</Link>
+        <Link to="/projects" className='button' style={{border: `1px solid ${textColor}`, color: textColor}}>PROJECTS</Link>
         </li>
         <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
-        <Link to="/"  className='button'>ABOUT ME</Link>
+        <Link to="/" className='button' style={{border: `1px solid ${textColor}`, color: textColor}}>ABOUT ME</Link>
         </li>
       </ul>
       </nav>
@@ -71,10 +74,10 @@ export default function App () {
       }}
     >
         <Routes location={displayLocation}>
-          <Route exact path="/" element={<About backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
-          <Route path="/projects/" element={<Projects backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
-          <Route path="/projects/sonic" element={<Sonic backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
-          <Route path="/projects/system" element={<System backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
+          <Route exact path="/" element={<About textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
+          <Route path="/projects/" element={<Projects textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
+          <Route path="/projects/sonic" element={<Sonic textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
+          <Route path="/projects/system" element={<System textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
         </Routes> 
       </div>
     </div>

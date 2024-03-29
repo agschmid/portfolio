@@ -1,24 +1,24 @@
 [
     {
         "linkTitle": "Sonic Mutations",
-        "displayTitle": "SONIC MUTATIONS",
-        "color": "#FFF0A2",
+        "displayTitle": "sonic mutations",
+        "color": "#C73D1D",
         "imageUrl": "ipad.png",
         "relLink": "/sonic",
         "roles": ["AI Research", "Full Stack Development", "Prototyping"]
     },
     {
         "linkTitle": "System of a Sound",
-        "displayTitle": "SYSTEM OF A SOUND",
-        "color": "#C2C2F2",
+        "displayTitle": "system of a sound",
+        "color": "#517664",
         "imageUrl": "temp.png",
         "relLink": "/system",
         "roles": ["Motion Design", "Interface Design", "Front End Development"]
     },
     {
         "linkTitle": "PANIC!",
-        "displayTitle": "PANIC",
-        "color": "#C2C2F2",
+        "displayTitle": "panic",
+        "color": "#4D5382",
         "imageUrl": "temp.png",
         "relLink": "/system",
         "roles": ["Motion Design", "Interface Design", "Front End Development"]

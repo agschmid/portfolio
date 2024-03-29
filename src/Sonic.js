@@ -1,22 +1,21 @@
 import './css/Project.css';
 import React, {useState, useEffect, useRef} from 'react';
 import { Link, useLocation } from "react-router-dom";
-import Pointer from './assets/Pointer.js'; 
+import Pointer from './assets/Light_Pointer.js'; 
 import { darken } from 'polished';
-import projectData from './professionalProject.json'; 
-import mobileCheck from './mobileCheck.js';
 
 
 export default function Sonic(props){   
-    const pageColor = "#FFF0A2"
+    const pageColor = "#C73D1D"
+    const textColor = "#D5D3C5"
     const setBackgroundColor = props.setBackgroundColor;
+    const setTextColor = props.setTextColor;
     const scrollRef = useRef(null);
     const location = useLocation();
     const [displayLocation, setDisplayLocation] = useState(location);
     const [transitionStage, setTransistionStage] = useState("fadeIn");
     const [scrollerShowing, setScrollerShowing] = useState('true');
     const [scrollerColor, setScrollerColor] = useState(pageColor);
-    const isMobile = mobileCheck();
     const [elementColor, setElementColor] = useState("rgba(255,0,0,0)");
 
 
@@ -30,11 +29,12 @@ export default function Sonic(props){
     // Set the page color and background colors on page load
     useEffect(() => {
         setBackgroundColor(pageColor);
+        setTextColor(textColor);
         const timer = setTimeout(() => {
             setElementColor(pageColor);
         }, 300);
         return () => clearTimeout(timer);
-    }, [setBackgroundColor]);
+    }, [setBackgroundColor, setTextColor]);
 
     // Use the wheel event to scroll down the projects list
     useEffect(() => {

@@ -1,4 +1,5 @@
 /* Projects List */
+
 .project .body-right{
     width: 55%;
 }
@@ -66,7 +67,7 @@
 
 .project .project-oner, .project .portfolio-list-star div{
     font-size: 150%;
-    font-weight: 100;
+    font-weight: 200;
 }
 
 
@@ -81,7 +82,7 @@
     display: inline-block;
     width: 12px; 
     height: 12px; 
-    background-image: url('../assets/icon.svg');
+    background-image: url('../assets/icon_light.svg');
     background-size: contain;
     background-repeat: no-repeat; 
     padding-left: 5px;
@@ -91,6 +92,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+.project .button{
+  color: #D5D3C5;
+  border: 1px solid #D5D3C5;
 }
 
 .project .projects {
@@ -145,7 +152,7 @@
 .project .project-info-description div{
   padding-right: 5px;
   font-size: 150%;
-  font-weight: 100;
+  font-weight: 200;
   display: flex;
   align-items: center;
 }
@@ -157,7 +164,7 @@
   display: inline-block;
   width: 12px; 
   height: 12px; 
-  background-image: url('../assets/icon.svg');
+  background-image: url('../assets/icon_light.svg');
   background-size: contain;
   background-repeat: no-repeat; 
   padding-left: 5px;

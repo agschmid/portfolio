@@ -9,7 +9,7 @@
     font-size: 120%;
     width: 30px;
     height: 30px;
-    background-color: #D9D9D9;
+    background-color: #D5D3C5;
     border-radius: 100%;
 }
   
@@ -37,6 +37,10 @@
     align-items: left;
     margin: 0px;
     padding: 0px;
+}
+
+.colored svg {
+  fill: var(--pageColor); /* Use the color defined in the parent div */
 }
   
 .project-list a{
@@ -115,8 +119,6 @@
 
 
 .portfolio-preview{
-  background-color: #DADADA;
-  border: 1px solid black;
   border-radius: 20px;
   padding: 50px;
   text-align: left;
@@ -127,6 +129,8 @@
   width: 100%;
   height: 100%;
   transition: none;
+  color: #D5D3C5;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.2);
 }
 
 .preview-image{
@@ -162,7 +166,7 @@
 .portfolio-preview-description div{
   padding-right: 5px;
   font-size: 150%;
-  font-weight: 100;
+  font-weight: 200;
   display: flex;
   align-items: center;
 }
@@ -173,7 +177,7 @@
   display: inline-block;
   width: 12px; 
   height: 12px; 
-  background-image: url('../assets/icon.svg');
+  background-image: url('../assets/icon_light.svg');
   background-size: contain;
   background-repeat: no-repeat; 
   padding-left: 5px;
@@ -266,7 +270,6 @@
     height: auto;
     flex-shrink:1;
   }
-
 }
 
 /* For shorter screens */
