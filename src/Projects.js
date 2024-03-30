@@ -24,6 +24,7 @@ export default function Projects(props){
     const isMobile = mobileCheck();
     const [elementColor, setElementColor] = useState("rgba(255,0,0,0)");
     const [marginBottom, setMarginBottom] = useState(0);
+    const numberProfs = 7;
 
 
     // Animate the page if it changes
@@ -186,29 +187,31 @@ export default function Projects(props){
           }
         }}>
             <div className='body-left lower-align'>
-                <div className='portfolio-preview' style={{backgroundColor: currentColor}}>
-                    <div className = 'portfolio-preview-title'>{currentProject}</div>
-                    <img className = 'preview-image' alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/${currentImage}`}></img>
-                    <div className = 'portfolio-preview-description'>
-                        {projectData[currentProjectIndex].roles.map((role, i) => (
-                            <div key={i} className='colored'>{role}</div>
-                        ))}
+                <Link to={"/projects"+projectData[currentProjectIndex].relLink} className='cardLink'>
+                    <div className='portfolio-preview' style={{backgroundColor: currentColor}}>
+                        <div className = 'portfolio-preview-title'>{currentProject}</div>
+                        <img className = 'preview-image' alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/${currentImage}`}></img>
+                        <div className = 'portfolio-preview-description'>
+                            {projectData[currentProjectIndex].roles.map((role, i) => (
+                                <div key={i} className='colored'>{role}</div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                </Link>
             </div>
 
             <div className="body-right projects firefox-scroll" ref={scrollRef}>
-                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>professional work</h3><div className='project-count'>7</div></div>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>professional work</h3><div className='project-count'>{numberProfs}</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    {projectData.slice(0, 7).map((link, index) => (
+                    {projectData.slice(0, numberProfs).map((link, index) => (
                         <Link key={index} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
                     ))}
                 </ul>
-                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>personal work</h3><div className='project-count'>10</div></div>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>personal work</h3><div className='project-count'>{projectData.length-numberProfs}</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    {projectData.slice(7).map((link, index, array) => (
+                    {projectData.slice(numberProfs).map((link, index, array) => (
                         <Link
-                            key={index + 7}
+                            key={index + numberProfs}
                             to={"/projects" + link.relLink}
                             onMouseEnter={(e) => updateProjectDisplay(index + 7, link.displayTitle, link.color, link.imageUrl)}
                             style={index === array.length - 1 ? {marginBottom: `${marginBottom}px` } : {}}
