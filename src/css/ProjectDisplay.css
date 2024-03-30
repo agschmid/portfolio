@@ -9,7 +9,8 @@
     font-size: 120%;
     width: 30px;
     height: 30px;
-    background-color: #D5D3C5;
+    background-color: var(--overlay-color);
+    color: var(--background-color);
     border-radius: 100%;
 }
   
@@ -247,6 +248,7 @@
 
   .portfolio-preview{
     padding: 10px;
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
   }
 
   .portfolio-preview-description {
@@ -262,6 +264,7 @@
 
   .body-left, .portfolio-preview{
     height: 320px;
+    overflow: visible;
   }
 
   .body-right{
@@ -269,6 +272,10 @@
     overflow-y: scroll;
     height: auto;
     flex-shrink:1;
+  }
+
+  .body{
+    overflow: visible;
   }
 }
 

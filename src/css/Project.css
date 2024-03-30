@@ -95,11 +95,6 @@
 }
 
 
-.project .button{
-  color: #D5D3C5;
-  border: 1px solid #D5D3C5;
-}
-
 .project .projects {
     overflow-y: hidden;
     flex-shrink:0;

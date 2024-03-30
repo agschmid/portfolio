@@ -88,7 +88,7 @@ export default function Sonic(props){
           }
         }}>
             <div className='body-left'>
-                <div className = 'project-info-title'>SONIC MUTATIONS</div>
+                <div className = 'project-info-title'>sonic mutations</div>
                 <img className = 'mobile project-image' alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/ipad.png`}></img>
                 <div className='project-info-split'>
                     <div className='project-info'>
@@ -118,7 +118,7 @@ export default function Sonic(props){
 
                     <ul className='project-buttons buttonParent desktop'>
                         <li className='left nothighlighted'><Link className="button" to="/projects">← BACK</Link></li>
-                        <li className='right nothighlighted'><Link className="button" to="/projects">NEXT →</Link></li>
+                        <li className='right nothighlighted'><Link className="button" to="/projects/system">NEXT →</Link></li>
                     </ul>
                 </div>
             </div>
@@ -136,7 +136,7 @@ export default function Sonic(props){
 
             <ul className='project-buttons buttonParent mobile'>
                         <li className='left nothighlighted'><Link className="button" to="/projects">← BACK</Link></li>
-                        <li className='right nothighlighted'><Link className="button" to="/projects">NEXT →</Link></li>
+                        <li className='right nothighlighted'><Link className="button" to="/projects/system">NEXT →</Link></li>
             </ul>
         </div>
 

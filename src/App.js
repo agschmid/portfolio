@@ -1,6 +1,7 @@
 import './css/App.css';
 import './css/Fonts.css';
 import './css/Scrollbar.css';
+import './css/Colors.css';
 
 import { React, useState, useEffect } from 'react';
 import { Routes, Route, Link, useLocation } from "react-router-dom";
@@ -26,6 +27,8 @@ export default function App () {
   useEffect(() => {
     document.documentElement.style.backgroundColor = backgroundColor;
     document.documentElement.style.color = textColor;
+    document.documentElement.style.setProperty('--background-color', backgroundColor);
+    document.documentElement.style.setProperty('--overlay-color', textColor);
     return () => {
       document.documentElement.style.backgroundColor = '';
       document.documentElement.style.textColor = '';
@@ -54,12 +57,11 @@ export default function App () {
         ☰
       </div>
       <ul id="navigation" className={menuShowing ? 'showNav' : ''}>
-        {/* <li className={useLocation().pathname.startsWith('/projects') ? 'left highlighted': 'left nothighlighted'}> */}
-        <li className={useLocation().pathname === '/projects' ? 'left highlighted': 'left nothighlighted'}>
-        <Link to="/projects" className='button' style={{border: `1px solid ${textColor}`, color: textColor}}>PROJECTS</Link>
+        <li className={useLocation().pathname === '/projects' ? 'highlighted': ''}>
+        <Link to="/projects" className='button'>PROJECTS</Link>
         </li>
-        <li className={useLocation().pathname==='/' ? 'right highlighted': 'right nothighlighted'}>
-        <Link to="/" className='button' style={{border: `1px solid ${textColor}`, color: textColor}}>ABOUT ME</Link>
+        <li className={useLocation().pathname==='/' ? 'highlighted': ''}>
+        <Link to="/" className='button'>ABOUT ME</Link>
         </li>
       </ul>
       </nav>

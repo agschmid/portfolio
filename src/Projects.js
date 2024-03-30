@@ -176,6 +176,7 @@ export default function Projects(props){
     }, [isMobile]);
 
 
+
     return (
         <div className={`${transitionStage} body`}
         onAnimationEnd={() => {
