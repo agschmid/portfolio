@@ -189,31 +189,53 @@ export default function Projects(props){
             <div className='body-left lower-align'>
                 <Link to={"/projects"+projectData[currentProjectIndex].relLink} className='cardLink'>
                     <div className='portfolio-preview' style={{backgroundColor: currentColor}}>
-                        <div className = 'portfolio-preview-title'>{currentProject}</div>
                         <img className = 'preview-image' alt='An alt title' src={`${process.env.PUBLIC_URL}/assets/${currentImage}`}></img>
+                        <div className = 'portfolio-preview-title'>{currentProject}</div>
                         <div className = 'portfolio-preview-description'>
-                            {projectData[currentProjectIndex].roles.map((role, i) => (
-                                <div key={i} className='colored'>{role}</div>
-                            ))}
+                            {projectData[currentProjectIndex].content}
                         </div>
                     </div>
                 </Link>
             </div>
 
             <div className="body-right projects firefox-scroll" ref={scrollRef}>
-                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>professional work</h3><div className='project-count'>{numberProfs}</div></div>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>ai products</h3><div className='project-count'>{numberProfs}</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    {projectData.slice(0, numberProfs).map((link, index) => (
+                    {projectData.slice(0, 4).map((link, index) => (
                         <Link key={index} to={"/projects"+link.relLink} onMouseEnter={(e) => updateProjectDisplay(index, link.displayTitle, link.color, link.imageUrl)}><li>{link.linkTitle}</li></Link>
                     ))}
                 </ul>
-                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>personal work</h3><div className='project-count'>{projectData.length-numberProfs}</div></div>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>development</h3><div className='project-count'>{projectData.length-numberProfs}</div></div>
                 <ul className='project-list' style={{marginBottom: "40px"}}>
-                    {projectData.slice(numberProfs).map((link, index, array) => (
+                    {projectData.slice(4,8).map((link, index, array) => (
                         <Link
-                            key={index + numberProfs}
+                            key={index + 4}
                             to={"/projects" + link.relLink}
-                            onMouseEnter={(e) => updateProjectDisplay(index + 7, link.displayTitle, link.color, link.imageUrl)}
+                            onMouseEnter={(e) => updateProjectDisplay(index + 4, link.displayTitle, link.color, link.imageUrl)}
+                        >
+                            <li>{link.linkTitle}</li>
+                        </Link>
+                    ))}
+                </ul>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>tangible interfaces</h3><div className='project-count'>{projectData.length-numberProfs}</div></div>
+                <ul className='project-list' style={{marginBottom: "40px"}}>
+                    {projectData.slice(8,11).map((link, index, array) => (
+                        <Link
+                            key={index + 7}
+                            to={"/projects" + link.relLink}
+                            onMouseEnter={(e) => updateProjectDisplay(index + 8, link.displayTitle, link.color, link.imageUrl)}
+                        >
+                            <li>{link.linkTitle}</li>
+                        </Link>
+                    ))}
+                </ul>
+                <div className='project-header-parent' style={{backgroundColor: elementColor}}><h3 className='project-header'>digital design</h3><div className='project-count'>{projectData.length-numberProfs}</div></div>
+                <ul className='project-list' style={{marginBottom: "40px"}}>
+                    {projectData.slice(11,15).map((link, index, array) => (
+                        <Link
+                            key={index + 11}
+                            to={"/projects" + link.relLink}
+                            onMouseEnter={(e) => updateProjectDisplay(index + 11, link.displayTitle, link.color, link.imageUrl)}
                             style={index === array.length - 1 ? {marginBottom: `${marginBottom}px` } : {}}
                             className={index === array.length - 1 ? "lastProject" : ""}
                         >

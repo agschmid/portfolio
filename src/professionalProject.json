@@ -2,153 +2,161 @@
     {
         "linkTitle": "Sonic Mutations",
         "displayTitle": "sonic mutations",
+        "category": "ai",
         "color": "#C73D1D",
         "imageUrl": "ipad.png",
         "relLink": "/sonic",
-        "roles": ["AI Research", "Full Stack Development", "Prototyping"]
-    },
-    {
-        "linkTitle": "System of a Sound",
-        "displayTitle": "system of a sound",
-        "color": "#517664",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+        "content": ["A platform for musicians to train generative AI and perform with it, showcased in live performances at the Sydney Opera House and SXSW."]
     },
     {
         "linkTitle": "PANIC!",
         "displayTitle": "panic",
+        "category": "ai",
         "color": "#4D5382",
         "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Cybernetic Star Coasters",
-        "displayTitle": "star coasters",
-        "color": "#C73D1D",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Futures Spinner",
-        "displayTitle": "futures spinner",
-        "color": "#517664",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Australian Cybernetic Interactive Poster",
-        "displayTitle": "australian cybernetic",
-        "color": "#4D5382",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Woroni Magazine Designs",
-        "displayTitle": "woroni designs",
-        "color": "#C73D1D",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Machine Learning Bechdel Test",
-        "displayTitle": "ml bechdel test",
-        "color": "#517664",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Laser Cut Iris",
-        "displayTitle": "laser cut iris",
-        "color": "#4D5382",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Quantum Phonon Research",
-        "displayTitle": "quantum phonon research",
-        "color": "#C73D1D",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Ping 3D Web Game",
-        "displayTitle": "ping 3d web game",
-        "color": "#517664",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Autonomous Moped Interface",
-        "displayTitle": "autonomous moped interface",
-        "color": "#4D5382",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Backwash Homepage",
-        "displayTitle": "backwash homepage",
-        "color": "#C73D1D",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Arduino Doodle Jump",
-        "displayTitle": "arduino doodle jump",
-        "color": "#517664",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
-    },
-    {
-        "linkTitle": "Smart Loading Zone Research",
-        "displayTitle": "smart loading zone research",
-        "color": "#4D5382",
-        "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+        "relLink": "/panic",
+        "content": ["An art installation where audiences and generative AI systems shape each other, creating feedback loops between different models."]
     },
     {
         "linkTitle": "Habit Helper",
         "displayTitle": "habit helper",
+        "category": "ai",
         "color": "#C73D1D",
         "imageUrl": "temp.png",
+        "relLink": "/habithelper",
+        "content": ["A prototype web app exploring how language models can assist in building positive habits."]
+    },
+    {
+        "linkTitle": "System of a Sound",
+        "displayTitle": "system of a sound",
+        "category": "ai",
+        "color": "#517664",
+        "imageUrl": "temp.png",
         "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+        "content": ["An exhibition giving voice to the hidden data of buildings."]
     },
     {
         "linkTitle": "Mixed Reality Navigation",
         "displayTitle": "mr navigation",
+        "category": "dev",
         "color": "#517664",
         "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+        "relLink": "/mrnavigation",
+        "content": ["Prototypes exploring audio and mixed reality technologies for the future of navigation."]
     },
     {
-        "linkTitle": "Portfolio Website",
-        "displayTitle": "portfolio website",
+        "linkTitle": "Australian Cybernetic Interactive Poster",
+        "displayTitle": "australian cybernetic",
+        "category": "dev",
         "color": "#4D5382",
         "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+        "relLink": "/cyberneticposter",
+        "content": ["A responsive poster that uses body tracking to morph and transform in response to the viewer."]
+    },
+    {
+        "linkTitle": "Backwash Homepage",
+        "displayTitle": "backwash homepage",
+        "category": "dev",
+        "color": "#C73D1D",
+        "imageUrl": "temp.png",
+        "relLink": "/backwash",
+        "content": ["An animated homepage showcasing an Australian T-shirt company."]
+    },
+    {
+        "linkTitle": "Ping 3D Web Game",
+        "displayTitle": "ping 3d web game",
+        "category": "dev",
+        "color": "#517664",
+        "imageUrl": "temp.png",
+        "relLink": "/ping",
+        "content": ["A 3D web game reimagining classic Pong, built with Three.js."]
+    },
+    {
+        "linkTitle": "Ukelele Hero Controller",
+        "displayTitle": "ukelele hero",
+        "category": "tang",
+        "color": "#4D5382",
+        "imageUrl": "temp.png",
+        "relLink": "/ukelele",
+        "content": ["A 3D printed bluetooth controller for playing Guitar Hero."]
+    },
+    {
+        "linkTitle": "Cybernetic Star Coasters",
+        "displayTitle": "star coasters",
+        "category": "tang",
+        "color": "#C73D1D",
+        "imageUrl": "temp.png",
+        "relLink": "/coasters",
+        "content": ["Laser cut coasters with spinning interiors, designed to spark conversation about systems thinking in executive workshops."]
+    },
+    {
+        "linkTitle": "Arduino Doodle Jump",
+        "displayTitle": "arduino doodle jump",
+        "category": "tang",
+        "color": "#517664",
+        "imageUrl": "temp.png",
+        "relLink": "/doodlejump",
+        "content": ["A doodle jump game displayed on a grid of LEDs."]
+    },
+    {
+        "linkTitle": "Futures Spinner",
+        "displayTitle": "futures spinner",
+        "category": "tang",
+        "color": "#517664",
+        "imageUrl": "temp.png",
+        "relLink": "/futures",
+        "content": ["Spinning chamber used in responsible technology futures workshops with Meta."]
+    },
+    {
+        "linkTitle": "ARtWalk",
+        "displayTitle": "artwalk",
+        "category": "des",
+        "color": "#517664",
+        "imageUrl": "temp.png",
+        "relLink": "/artwalk",
+        "content": ["A mixed reality concept for reimagining the way we experience art."]
+    },
+    {
+        "linkTitle": "Woroni Magazine Designs",
+        "displayTitle": "woroni designs",
+        "category": "des",
+        "color": "#C73D1D",
+        "imageUrl": "temp.png",
+        "relLink": "/woroni",
+        "content": ["Illustrations and designs for the Australian National University magazine."]
+    },
+    {
+        "linkTitle": "Autonomous Moped Interface",
+        "displayTitle": "autonomous moped interface",
+        "category": "des",
+        "color": "#4D5382",
+        "imageUrl": "temp.png",
+        "relLink": "/moped",
+        "content": ["Interface design for an autonomous moped."]
+    },
+    {
+        "linkTitle": "Machine Learning Bechdel Test",
+        "displayTitle": "ml bechdel test",
+        "category": "des",
+        "color": "#517664",
+        "imageUrl": "temp.png",
+        "relLink": "/machinelearningfilm",
+        "content": ["A machine learning project focused on film prediction, utilizing data scraping and generation techniques to create predictive models."]
     },
     {
         "linkTitle": "Baking Projects",
         "displayTitle": "baking",
         "color": "#C73D1D",
         "imageUrl": "temp.png",
-        "relLink": "/system",
-        "roles": ["Motion Design", "Interface Design", "Front End Development"]
+        "relLink": "/baking",
+        "content": ["A collection of things I've baked recently."]
+    },
+    {
+        "linkTitle": "Quantum Phonon Research",
+        "displayTitle": "quantum phonon research",
+        "color": "#C73D1D",
+        "imageUrl": "temp.png",
+        "relLink": "/quantum",
+        "content": ["Physics research on storing quantum information."]
     }
 ]

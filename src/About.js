@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import Test from './Test.js'
 
 
 export default function About(props){   
@@ -11,9 +12,7 @@ export default function About(props){
     return (
         <>
             <h2>About Page</h2>
-            <main>
-                <p>This section contains information about...</p>
-            </main>
+            <Test></Test>
         </>
     )
 }

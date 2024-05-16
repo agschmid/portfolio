@@ -10,6 +10,7 @@ import Projects from './Projects';
 import Sonic from './Sonic';
 import System from './System';
 
+
 // Uncomment this for google tracking
 // import ReactGA from "react-ga4";
 // ReactGA.initialize('G-MSPZLVKWK8');
@@ -60,8 +61,8 @@ export default function App () {
         <li className={useLocation().pathname === '/projects' ? 'highlighted': ''}>
         <Link to="/projects" className='button'>PROJECTS</Link>
         </li>
-        <li className={useLocation().pathname==='/' ? 'highlighted': ''}>
-        <Link to="/" className='button'>ABOUT ME</Link>
+        <li className={useLocation().pathname==='/about' ? 'highlighted': ''}>
+        <Link to="/about" className='button'>ABOUT</Link>
         </li>
       </ul>
       </nav>
@@ -76,8 +77,8 @@ export default function App () {
       }}
     >
         <Routes location={displayLocation}>
-          <Route exact path="/" element={<About textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
-          <Route path="/projects/" element={<Projects textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
+          <Route exact path="/about" element={<About textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
+          <Route path="/projects" element={<Projects textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
           <Route path="/projects/sonic" element={<Sonic textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
           <Route path="/projects/system" element={<System textColor = {textColor} setTextColor={setTextColor} backgroundColor = {backgroundColor} setBackgroundColor={setBackgroundColor}/>} />
         </Routes> 
